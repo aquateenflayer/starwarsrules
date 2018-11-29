@@ -1,0 +1,36 @@
+<html>
+<script>
+
+//function Droid('name','size','degree','level','init','senses','languages','ref','fort','will','flatfooted','hp','threshold','immune','speed','melee','ranged','bab','grp','str','dex','con','int','wis','cha',);
+
+
+var acrobatics = 'Acrobatics';
+var climb = 'Climb';
+var deception = 'Deception';
+var endurance = 'Endurance';
+var gatherInformation = 'Gather Information';
+var initiative = 'Initiative';
+var jump = 'Jump';
+var knowledgeBureaucracy = 'Knowledge Bureaucracy';
+var knowledgeGalacticLore = 'Knowledge Galactic Lore';
+var knowledgeLifeSciences = 'Knowledge Life Sciences';
+var knowledgePhysicalSciences = 'Knowledge Physical Sciences';
+var knowledgeSocialSciences = 'Knowledge Social Sciences';
+var knowledgeTactics = 'Knowledge Tactics';
+var knowledgeTechnology = 'knowledge Technology';
+var mechanics = 'Mechanics';
+var perception = 'Perception';
+var persuasion = 'Persuasion';
+var pilot = 'Pilot';
+
+var skills = [acrobatics,climb,deception,endurance,gatherInformation,initiative,jump,knowledgeBureaucracy,knowledgeGalacticLore,knowledgeLifeSciences,knowledgePhysicalSciences,knowledgeSocialSciences,knowledgeTactics,knowledgeTechnology, mechanics, perception, persuasion, pilot];
+
+function postSkills(){
+	var i;
+	var text = '<details><summary><h2 class = "catagory" style="text-align:center">';
+	for (i = 0; i < skills.length; i++){
+	text += skills[i] + '</h2></summary></details><hr width = "50%" ><br><details><summary><h2 class = "catagory" style="text-align:center">';}
+	console.log(text);
+}
+</script>
+</html>
