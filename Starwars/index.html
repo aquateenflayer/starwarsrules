@@ -1,0 +1,196 @@
+<html>
+	<head><script src="character/class.js"></script>
+		<script src="equipment/equipment.js"></script>
+		<script src="equipment/armor.js"></script>
+		<script src="equipment/upgrade.js"></script>
+		<script src="equipment/availability.js"></script>
+		<script src="equipment/equipment_Groups.js"></script>
+		
+		<script src="equipment/render_Armor.js"></script>
+		<script src="equipment/general_Equipment_Collection.js"></script>
+		<script src="equipment/weapon.js"></script>
+		<script src="equipment/equip_Upgrade.js"></script>
+		<script src="equipment/upgrade_Collection.js"></script>
+		<script src="equipment/weapon_Collection.js"></script>
+		<script src="equipment/armor_Collection.js"></script>
+		<script src="character/skill.js"></script>
+		<script src="character/character_Groups.js"></script>
+		<script src="character/character.js"></script>
+		<script src="equipment/create_Armor_Table.js"></script>
+		<script src="character/character_Collection.js"></script></head>
+		<link rel="stylesheet" type="text/css" href="starwarsstyle.css">
+	<body>
+		
+
+
+
+
+<button onclick="blackMarketArmor(roll_modifier)">Blackmail Armor Prices</button>
+<p> Modifier: <span id = "modifier">0</span></p><button onclick="plusOneToModifier()">+1</button>
+
+
+<title id = "title"> </title>
+
+<h1 id = "name"></h1>
+<table id = "stats"></table>
+<p id = "description"></p>
+<p id = "unarmored"></p>
+<details><summary>Light Armor</summary> <p id = "Light"></p></details>
+<details><summary>Medium Armor</summary> <p id = "Medium"></p></details>
+<details><summary>Heavy Armor</summary> <p id = "Heavy"></p></details>
+<p id = rifles></p>
+
+
+
+	</body>
+	<script>
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		// modifier used for rolling blackmarket item availability
+		let roll_modifier = 100;
+		/////////////////////////
+		function plusOneToModifier(){
+		roll_modifier += 1;
+		document.getElementById("modifier").innerHTML = roll_modifier;
+	}
+
+//// create random number/////
+		function roll(dx) {
+		var result = Math.floor((Math.random()*dx)+1);
+		//console.log(result);
+		return result;
+	}
+
+		//remove all tables from screen
+		function clearAllBlackMarketArmor(){
+			clearBlackMarketRollsArmor("Light");
+			clearBlackMarketRollsArmor("Medium");
+			clearBlackMarketRollsArmor("Heavy");
+		}
+
+		function clearBlackMarketRollsArmor(table){
+			//table = ARMOR_GROUP.table.NAME;
+			var myNode = document.getElementById(table);
+				while (myNode.firstChild) {
+   				 myNode.removeChild(myNode.firstChild);
+}
+		}
+
+		// varable that decides if armor is added or subtracted from page
+		var clearArmor =false
+
+		//make a table based upon the items available from a blackmarket roll
+
+		function blackMarketArmor(modifier){
+
+			if(clearArmor){
+				clearArmor = false;
+				clearAllBlackMarketArmor();
+			}else{
+				clearArmor = true;
+
+			let blackMarket_Light_Armor_Array =[];
+			let blackMarket_Heavy_Armor_Array =[];
+			let blackMarket_Medium_Armor_Array =[];
+			let temp_Light_Armor_Array = light_Armor_Array;
+			let temp_Medium_Armor_Array = medium_Armor_Array;
+			let temp_Heavy_Armor_Array = heavy_Armor_Array;
+			//make a roll for each armor in temp armor catagories and slice the sucessful rolls to their blackmarket counterparts. dont forget to adjust price for each item.
+			function pruneArray(arrayName, blackmarket_Array, modifier){
+				for(i = 0; i < arrayName.length; i++){
+					blackmarketRoll = roll(20) + modifier;
+					console.log(blackmarketRoll);
+					if (arrayName[i].availibility.SKILL_DC <= blackmarketRoll){
+						arrayName[i].cost = arrayName[i].black_market_cost;
+						blackmarket_Array.push(arrayName[i]);
+						//console.log(arrayName[i].name + " Add to Table");
+					}else{
+						console.log(arrayName[i].name +" Failed to Roll High Enough");
+					}
+				}
+
+
+			}
+
+			pruneArray(temp_Light_Armor_Array,blackMarket_Light_Armor_Array,modifier);
+			pruneArray(temp_Medium_Armor_Array,blackMarket_Medium_Armor_Array,modifier);
+			pruneArray(temp_Heavy_Armor_Array,blackMarket_Heavy_Armor_Array,modifier);
+			//put blackmarket arrays onto the screen.
+			create_Armor_Table(blackMarket_Light_Armor_Array);
+			create_Armor_Table(blackMarket_Medium_Armor_Array);
+			create_Armor_Table(blackMarket_Heavy_Armor_Array);
+															}
+																}
+		
+		function create_Weapon_Table(){
+			var row =[];
+			table_name = "Weapon_Table" + array[0].WEAPON_GROUP.NAME;
+			array.weapon_Table = document.createElement("TABLE");
+			array.weapon_Table.setAttribute("id",table_name);
+			//attach table created onto the 'stats' table up higher
+			document.getElementById(array[0].WEAPON_GROUP.NAME).appendChild(array.weapon_Table);
+
+			for(i = -1; i < array.length; i++){
+				//create table row
+				name = array[0].WEAPON_GROUP.NAME + "row"+i;
+				row[i] = document.createElement("TR");
+				row[i].setAttribute("id",name);
+				document.getElementById(table_name).appendChild(row[i]);
+				if (i == -1){
+					//create header
+			var header1 = document.createElement("TH");
+
+
+			var header1Input = document.createTextNode(array[0].WEAPON_GROUP.NAME + "s");
+			header1.appendChild(header1Input);
+			//put header into row 0
+			document.getElementById(name).appendChild(header1);
+			//create header
+			var header2 = document.createElement("TH");
+			var header2Input = document.createTextNode("SIZE");
+			header2.appendChild(header2Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header2);
+			//create header
+			var header3 = document.createElement("TH");
+			var header3Input = document.createTextNode("COST");
+			header3.appendChild(header3Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header3);
+			//create header
+			var header4 = document.createElement("TH");
+			var header4Input = document.createTextNode("Damage");
+			header4.appendChild(header4Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header4);
+			//create header
+			var header5 = document.createElement("TH");
+			var header5Input = document.createTextNode("STUN DAMAGE");
+			header5.appendChild(header5Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header5);
+			//create header
+			var header6 = document.createElement("TH");
+			var header6Input = document.createTextNode("WEIGHT");
+			header6.appendChild(header6Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header6);
+			//create header
+			var header7 = document.createElement("TH");
+			var header7Input = document.createTextNode("TYPE");
+			header7.appendChild(header7Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header7);
+			//create header
+			var header8 = document.createElement("TH");
+			var header8Input = document.createTextNode("PICTURE");
+			header8.appendChild(header8Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header8);
+
+
+		}}}
+
+
+	</script>
+	
+</html>

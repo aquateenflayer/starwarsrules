@@ -1,0 +1,4 @@
+	//constructor(name,cost,availibility,description,upgrade_Cost){
+
+const SHADOWSKIN = new upgrade ("Shadowskin",5000,AVAILABILITY.RESTRICTED,"A matte black finish of light- and sensor-absorbing material, a Shadowskin turns any Armor coated with it into a stealth suit. Normally coupled with a Sound Dampener (Included in this modification cost), it is difficult to see, hear, or detect the Armor with sensors. Armor with Shadowskin grants a +5 Equipment bonus on all Stealth checks made by the wearer.",1);
+const STANDARD_VACUUM_SEALS = new upgrade ("Vacuum Seals[Standard]",2000,AVAILABILITY.UNRESTRICTED,"Any Armor can be Upgraded with Vacuum Seals, which include airtight gaskets around all joints and simple Life Support Equipment that adds 2 kg of weight. This allows the Armor's wearer to survive for 10 hours in the Vacuum of space or any other hostile environment.",0)
