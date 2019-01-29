@@ -67,7 +67,7 @@ var JEDI_BATTLE_ARMOR= new armor("Jedi Battle Armor",6000, AVAILABILITY.UNRESTRI
 var BIOHAZARD_SUIT= new armor("Biohazard Suit",4000, AVAILABILITY.LICENSED,9,"Hazmat_Gear_FF.png","The Biohazard Suit is a common piece of Equipment that protects the wearer from hazardous biological matter. he standard Biohazard Suit is bright yellow and features a domed, transparent helmet to allow for normal vision. A Biohazard Suit provides immunity to all Atmospheric Hazards and inhaled Poisons, as well as to any Diseases spread by inhalation or contact. A Biohazard Suit provides 1 hour of breathable atmosphere before the filter and atmosphere canister must be replaced.",0,3,0,4,3,ARMOR_GROUP.MEDIUM);
 var CAMO_SCOUT_ARMOR= new armor("Camo Scout Armor",6000, AVAILABILITY.LICENSED,13,"CamoNew.jpg","Creshaldyne Industries Camo Scout Armor is worn by scouts, commandos, and other stealthy troops. It combines sound-dampening technology with the light-bending and light-absorption technology used in the Camouflage Poncho. Camo Scout Armor provides a +5 Equipment bonus on all Stealth checks made by the wearer. If you are using the Armor Upgrades option from Scum and Villainy, Camo Scout Armor has the Shadowskin Upgrade as well as one additional Upgrade Slot.",6,2,3,4,3,ARMOR_GROUP.MEDIUM);
 	CAMO_SCOUT_ARMOR.upgrades.push(SHADOWSKIN);
-
+	//CAMO_SCOUT_ARMOR.upgrades.SHADOWSKIN.free = true;
 var KATARN_CLASS_COMMANDO_ARMOR= new armor("Katarn Class Commando Armor",30000, AVAILABILITY.MILITARY,20,"katarncasscombatarmor.jpg","Issued several months after the Battle of Geonosis, Katarn-Class Commando Armor is a superior, specialized Armor, designed with input from Clone Commandos in the field. The Armor is unusually thick, with a sealed system allowing the wearer to survive underwater or in Vacuum for up to 24 hours. It also features a built-in, retractable, wrist-mounted Vibroblade. This highly sought after Armor is rarely found in the possession of civilians. It's Black Market price can exceed a quarter-million credits. Clone Commandos swear by the Armor's effectiveness, even though they also grumble beneath their breath about it's lack of comfort during long missions. Katarn-Class Commando Armor grants a wearer with the Armor Proficiency (Heavy) Feat a +2 bonus on Perception checks, as well as Low-Light Vision. The Armor includes an Integrated Comlink in the helmet, allowing hands-free communication. As a Full-Round Action, the wearer can use the Bacta tanks built into the Armor. The Bacta and the suit's built-in diagnostic gear grant the wearer an effective Treat Injury +10 bonus for self-treatment. The wearer ignores the -5 penalty for self-administration of this Skill. Katarn-Class Commando Armor is highly customizable. If you are using the Armor Upgrades option from Scum and Villainy, the Katarn-Class Commando Armor has the Vacuum Seals Upgrade as well as three additional Upgrade Slots.",9,4,1,4,3,ARMOR_GROUP.MEDIUM);
 	KATARN_CLASS_COMMANDO_ARMOR.upgrades_Max = 3;
 	
@@ -108,3 +108,9 @@ var medium_Armor_Array = [CORELLIAN_POWERSUIT,CEREMONIAL_ARMOR,BATTLE_ARMOR,MAND
 	//medium_Armor_Array.armor_display = false;
 var heavy_Armor_Array = [ARMORED_SPACESUIT,HEAVY_BATTLE_ARMOR,REPUBLIC_HEAVY_ARMOR,HEAVY_POWERED_BATTLE_ARMOR,MANDALORIAN_NEO_CRUSADER_ASSAULT_ARMOR,MATRIX_ARMOR,GTU_AV_1C_COMBAT_ARMOR,HEAVY_BESKA_GAM,VACUUM_POD,VENOM_ASSAULT_ARMOR,HEAVY_DARK_ARMOR,ORBALISK_ARMOR,ZERO_GRAVITY_STORMTROOPER_ARMOR,HEAVY_SKAKOAN_PRESSURE_SUIT];
 	//heavy_Armor_Array.armor_display = false;
+
+	function displayAllArmor(){
+	displayArray(light_Armor_Array);
+	displayArray(medium_Armor_Array);
+	displayArray(heavy_Armor_Array);
+					}

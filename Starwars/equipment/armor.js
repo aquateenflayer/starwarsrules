@@ -3,16 +3,16 @@ class armor extends equipment{
 			{
 
 		super(name,cost,availibility,weight,picture,description);
-
+		this.equipment_Type = "armor";
 		this.reflex_Defense = reflex_Defense,
 		this.fortitude_Defense = fortitude_Defense,
 		this.max_Dex = max_Dex,
 		this.speed_reduction_Four =speed_reduction_Four,
 		this.speed_reduction_Six = speed_reduction_Six;
 		this.ARMOR_GROUP = ARMOR_GROUP;
-		this.picture = "equipment/equipment_pictures/" + picture;
+		
 		this.upgrades_Max = this.ARMOR_GROUP.UPGRADES_MAX;
-		this.free_Upgrade_Slots = calculate_Free_Upgrade_Slots(this.upgrades_Max,this.upgrades);
+		//this.free_Upgrade_Slots = calculate_Free_Upgrade_Slots(this.upgrades_Max,this.upgrades);
 		
 		}
 	}

@@ -5,6 +5,7 @@ function createWeapon(){
 	 	object_Name = object_Name.replace(/ /g,"_");
 	let description = document.getElementById("description").value;
 	let weapon_group= document.getElementById("weapon_group").value;
+		weapon_group =weapon_group.replace(/ /g,"_");
 	let weapon_size= document.getElementById("weapon_size").value;
 	let cost= document.getElementById("cost").value;
 	let damage_Dice_Number= document.getElementById("damage_Dice_Number").value;
@@ -16,8 +17,36 @@ function createWeapon(){
 	let weight= document.getElementById("weight").value;
 	let damage_type= document.getElementById("damage_type").value;
 	let availibility= document.getElementById("availibility").value;
+	let rof= document.getElementById("rof").value;
+	if(rof == "s"){
+		RATE_OF_FIRE = "SINGLE_SHOT";
+	}else if(rof == "a"){
+		RATE_OF_FIRE = "AUTOFIRE";
+	}else if(rof == "sa" || rof == "as"){
+		RATE_OF_FIRE = "AUTOFIRE_AND_SINGLE_SHOT"
+	}
 
-let object_code = `var ${object_Name} = new weapon(${name},${cost},AVAILIBILITY.${availibility.toUpperCase()},${weight},WEAPON_SIZE.${weapon_size.toUpperCase()},${picture},${damage_Dice_Size},${damage_Dice_Number},${damage_Bonus},${stun_Dice_Size},${stun_Dice_Number},${stun_Bonus},weapon_group.${weapon_group.toUpperCase()},DAMAGE_TYPE.${damage_type.toUpperCase()},${description})`;
+	/* switch(damage_type){
+		case p:
+		DAMAGE_TYPE = "PIERCING";
+		break; 
+		case s:
+		DAMAGE_TYPE = "SLASHING";
+		break;
+		case b:
+		DAMAGE_TYPE = "BLUDGEONING";
+		break;
+		case p:
+		DAMAGE_TYPE = "PIERCING_AND_SLASHING";
+		break;
+
+	} */
+
+
+
+
+
+let object_code = `var ${object_Name} = new weapon(\"${name}\",${cost},AVAILABILITY.${availibility.toUpperCase()},${weight},WEAPON_SIZE.${weapon_size.toUpperCase()},\"${picture}\",${damage_Dice_Size},${damage_Dice_Number},${damage_Bonus},${stun_Dice_Size},${stun_Dice_Number},${stun_Bonus},WEAPON_GROUP.${weapon_group.toUpperCase()},DAMAGE_TYPE.${damage_type.toUpperCase()},"${description}",RATE_OF_FIRE.${RATE_OF_FIRE})`;
 document.getElementById("object_Code").innerHTML = object_code;
 }
 

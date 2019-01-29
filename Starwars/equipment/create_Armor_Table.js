@@ -63,6 +63,12 @@ function create_Armor_Table(array){
 			header7.appendChild(header7Input);
 			//put header into row 1
 			document.getElementById(name).appendChild(header7);
+			//create header
+			var header8 = document.createElement("TH");
+			var header8Input = document.createTextNode("Upgrades");
+			header8.appendChild(header8Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header8);
 			
 						}else{
 
@@ -118,6 +124,15 @@ function create_Armor_Table(array){
 			pictureInput.setAttribute("height","150");
 			pictureData.appendChild(pictureInput);
 			document.getElementById(name).appendChild(pictureData);
+
+
+					////create upgrade data
+			mark_Empty_Upgrades(array);
+			var upgradeText = getUpgradeNames(array);
+			var upgradeData = document.createElement("TD");
+			var upgradeInput = document.createTextNode(upgradeText);
+			upgradeData.appendChild(upgradeInput);
+			document.getElementById(name).appendChild(upgradeData);
 						}
 					}
 				}

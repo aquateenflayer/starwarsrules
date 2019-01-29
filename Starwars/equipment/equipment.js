@@ -12,9 +12,9 @@ class equipment{
 	this.upgrades_Max = 1;
 	this.upgrades_Current = 0;
 	this.upgrades= [];
-
-
-
+	this.properties=[];
+	this.picture = "equipment/equipment_pictures/" + picture;
+	this.equipment_Type = "equipment"
 }
 
 };
