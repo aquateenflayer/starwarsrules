@@ -1,10 +1,10 @@
 class character{
-	constructor(name,CLASS,level,max_Hit_Points,current_Hit_Points,strength,dexterity,constitution,inteligence,wisdom,charisma){
+	constructor(name,CLASS,level,max_Hit_Points,strength,dexterity,constitution,inteligence,wisdom,charisma){
 		this.name = name,
 		this.level = level,
 		this.speed = 6,
 		this.max_Hit_Points = max_Hit_Points,
-		this.current_Hit_Points = current_Hit_Points,
+		this.current_Hit_Points = max_Hit_Points,
 		this.condition = CONDITION.NORMAL,
 		this.skills = skills,
 		this.equipment = [],
