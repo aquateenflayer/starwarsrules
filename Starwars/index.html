@@ -1,11 +1,14 @@
 <html>
 	<head><script src="character/class.js"></script>
+		<script src="equipment/display_Black_Market.js"></script>
+		<script src="equipment/display_Armor.js"></script>
+		<script src="equipment/display_Weapon.js"></script>
+		<script src="equipment/display_item.js"></script>
 		<script src="equipment/equipment.js"></script>
 		<script src="equipment/armor.js"></script>
 		<script src="equipment/upgrade.js"></script>
 		<script src="equipment/availability.js"></script>
 		<script src="equipment/equipment_Groups.js"></script>
-		
 		<script src="equipment/render_Armor.js"></script>
 		<script src="equipment/general_Equipment_Collection.js"></script>
 		<script src="equipment/weapon.js"></script>
@@ -17,6 +20,7 @@
 		<script src="character/character_Groups.js"></script>
 		<script src="character/character.js"></script>
 		<script src="equipment/create_Armor_Table.js"></script>
+		<script src="equipment/properties.js"></script>
 		<script src="character/character_Collection.js"></script></head>
 		<link rel="stylesheet" type="text/css" href="starwarsstyle.css">
 	<body>
@@ -25,8 +29,11 @@
 
 
 
-<button onclick="blackMarketArmor(roll_modifier)">Blackmail Armor Prices</button>
-<p> Modifier: <span id = "modifier">0</span></p><button onclick="plusOneToModifier()">+1</button>
+<button onclick="display_Black_Market()">Black Market</button>
+
+<p> Modifier: <span id = "modifier">0</span></p>
+<input type="number" id="modInput">
+<button onclick="setModifier()">Set Modifier</button>
 
 
 <title id = "title"> </title>
@@ -38,19 +45,103 @@
 <details><summary>Light Armor</summary> <p id = "Light"></p></details>
 <details><summary>Medium Armor</summary> <p id = "Medium"></p></details>
 <details><summary>Heavy Armor</summary> <p id = "Heavy"></p></details>
-<p id = rifles></p>
+<details><summary>Rifles</summary> <p id = "Rifle"> </p></details>
+<p id = Pistol></p>
 
 
+
+<table style="width:100%">
+	<tr>
+	<th colspan="8"><details><summary>Blaster Rifle</summary>
+		<table><tr><td  colspan ="8">"The basic Blaster Rifle is standard issue to soldiers across the galaxy. Some Blaster Rifles, such as the BlasTech E-11 (Or its \"Clone,\" the SoroSuub Stormtrooper One), have a Retractable Stock. A Blaster Rifle without a Retractable Stock costs 900 credits (Instead of 1000 credits).A Blaster Rifle requires a Power Pack to operate. After 50 shots, the Power Pack must be replaced."
+	</td>
+		</tr>
+			<tr>
+		<td class = "wideData"><details><summary>Picture</summary>
+		<img src ="equipment/equipment_pictures/A280_blaster_rifle.jpg" style = "width:425px">
+	</details>
+	</td>
+	</tr>
+	<tr>
+	<td>Cost</td><td>Size</td><td>Damage</td><td>Damage Type</td><td>Stun Damage</td><td>Rate of Fire</td><td>Weight</td>
+	</tr>
+	<tr>
+		<td>1000</td><td>Medium</td><td>3d8</td><td>Energy</td><td>3d8</td><td>"Autofire and Single Shot"</td><td>4 kg</td>
+	</tr>
+	
+	<tr>
+		<td colspan="8">
+			<details><summary>Properties</summary>
+				<table style = "width:100%">
+					<tr>
+						<td><span title = "When the Retractable Stock is folded, the following rules apply:
+
+Treat the Weapon as a Pistol for purposes of proficiency and Range.
+You cannot Brace the Weapon while using it in Autofire mode, even if it is an Autofire-only Weapon.
+When the Retractable Stock is extended, the following rules apply:
+
+Treat the Weapon as a Rifle for purposes of proficiency and Range.
+You take a -5 penalty on attack rolls with the Weapon if you use it in one hand (Regardless of its size relative to you).">[Retractable Stock]</span></td>
+					</tr>
+				</table></details>
+
+		</td>
+	</tr>
+	<tr>
+		<td colspan="8">
+			<details><summary>Upgrades</summary>
+				<table style ="width:100%">
+					<td><span title ="There is adiquite room and energy for another upgrade">[Unused Upgrade Slot]</span></td>
+				</table>
+			</details>
+		</td>
+	</tr>
+	<tr><td colspan="8">
+		<details><summary>Ranges</summary>
+			<table style ="width:100%">
+				<tr>
+		<th ><span title = "Point Blank has a -0 Penalty to attack.">Point Blank</span></th><th><span title = "Short Range has a -2 Penalty to attack.">Short Range</span></th><th><span title = "Medium Range has a -5 Penalty to attack.">Medium Range</span></th><th><span title = "Long Range has a -10 Penalty to attack.">Long Range</span></th>
+				</tr>
+				<tr>
+					<td>0-30 Meters</td>  <td>31-60 Meters</td>  <td>61-150 Meters</td>  <td>150-300 Meters</td>
+		</table>
+		</details>
+	</td>
+	</tr>
+	</table>
+
+	</details>
+	</th>
+</tr>
+
+
+	
+</table>
 
 	</body>
 	<script>
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
 		// modifier used for rolling blackmarket item availability
-		let roll_modifier = 100;
+		let roll_modifier =0;
+
+
+
 		/////////////////////////
-		function plusOneToModifier(){
-		roll_modifier += 1;
-		document.getElementById("modifier").innerHTML = roll_modifier;
+		function setModifier(){
+		roll_modifier = document.getElementById("modInput").value;
+		document.getElementById("modifier").innerHTML = Number(roll_modifier);
 	}
 
 //// create random number/////
@@ -81,7 +172,7 @@
 		//make a table based upon the items available from a blackmarket roll
 
 		function blackMarketArmor(modifier){
-
+			console.log(modifier)
 			if(clearArmor){
 				clearArmor = false;
 				clearAllBlackMarketArmor();
@@ -121,17 +212,17 @@
 															}
 																}
 		
-		function create_Weapon_Table(){
+		function create_Weapon_Table(array){
 			var row =[];
-			table_name = "Weapon_Table" + array[0].WEAPON_GROUP.NAME;
+			table_name = "weapon_Table" + array[0].weapon_group.NAME;
 			array.weapon_Table = document.createElement("TABLE");
 			array.weapon_Table.setAttribute("id",table_name);
 			//attach table created onto the 'stats' table up higher
-			document.getElementById(array[0].WEAPON_GROUP.NAME).appendChild(array.weapon_Table);
+			document.getElementById(array[0].weapon_group.NAME).appendChild(array.weapon_Table);
 
 			for(i = -1; i < array.length; i++){
 				//create table row
-				name = array[0].WEAPON_GROUP.NAME + "row"+i;
+				name = array[0].weapon_group.NAME + "row"+i;
 				row[i] = document.createElement("TR");
 				row[i].setAttribute("id",name);
 				document.getElementById(table_name).appendChild(row[i]);
@@ -140,7 +231,7 @@
 			var header1 = document.createElement("TH");
 
 
-			var header1Input = document.createTextNode(array[0].WEAPON_GROUP.NAME + "s");
+			var header1Input = document.createTextNode(array[0].weapon_group.NAME + "s");
 			header1.appendChild(header1Input);
 			//put header into row 0
 			document.getElementById(name).appendChild(header1);
@@ -170,25 +261,123 @@
 			document.getElementById(name).appendChild(header5);
 			//create header
 			var header6 = document.createElement("TH");
-			var header6Input = document.createTextNode("WEIGHT");
+			var header6Input = document.createTextNode("RATE OF FIRE");
 			header6.appendChild(header6Input);
 			//put header into row 1
 			document.getElementById(name).appendChild(header6);
 			//create header
 			var header7 = document.createElement("TH");
-			var header7Input = document.createTextNode("TYPE");
+			var header7Input = document.createTextNode("WEIGHT");
 			header7.appendChild(header7Input);
 			//put header into row 1
 			document.getElementById(name).appendChild(header7);
+			//create header
+			var header8 = document.createElement("TH");
+			var header8Input = document.createTextNode("TYPE");
+			header8.appendChild(header8Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header8);
 			//create header
 			var header8 = document.createElement("TH");
 			var header8Input = document.createTextNode("PICTURE");
 			header8.appendChild(header8Input);
 			//put header into row 1
 			document.getElementById(name).appendChild(header8);
+			//create header
+			var header8 = document.createElement("TH");
+			var header8Input = document.createTextNode("Upgrades");
+			header8.appendChild(header8Input);
+			//put header into row 1
+			document.getElementById(name).appendChild(header8);
+			
+
+						}else{
+
+							//create name data
+							array[i].nameData = document.createElement("TD");
+							var nameDetail = document.createElement("DETAILS");
+							array[i].nameData.appendChild(nameDetail);
+			var nameSummary = document.createElement("SUMMARY");
+			var nameInput = document.createTextNode(array[i].name);
+							nameSummary.appendChild(nameInput);
+			var detailDescription =document.createTextNode(array[i].description);
+			nameDetail.appendChild(nameSummary);
+			nameDetail.appendChild(detailDescription);
+			
 
 
-		}}}
+			document.getElementById(name).appendChild(array[i].nameData);
+
+							//create size data
+			var sizeData = document.createElement("TD");
+			var sizeInput = document.createTextNode(array[i].weapon_size.DISCRIPTION);
+			sizeData.appendChild(sizeInput);
+			document.getElementById(name).appendChild(sizeData);
+
+							//create cost data
+			var costData = document.createElement("TD");
+			var costInput = document.createTextNode(array[i].cost);
+			costData.appendChild(costInput);
+			document.getElementById(name).appendChild(costData);
+
+							//create damage data
+			var fortData = document.createElement("TD");
+			if (array[i].damage_Dice_Number > 0){
+			if (array[i].damage_Bonus > 0){
+			var fortInput = document.createTextNode(`${array[i].damage_Dice_Number}d${array[i].damage_Dice_Size}+${array[i].damage_Bonus}`);}else {var fortInput = document.createTextNode(`${array[i].damage_Dice_Number}d${array[i].damage_Dice_Size}`);}}else{
+				var fortInput = document.createTextNode("No");
+			}
+
+			fortData.appendChild(fortInput);
+			document.getElementById(name).appendChild(fortData);
+
+							//create stun damage data
+			var stunData = document.createElement("TD");
+			if (array[i].stun_Dice_Number > 0){
+			if (array[i].stun_Bonus > 0){
+			var stunInput = document.createTextNode(`${array[i].stun_Dice_Number}d${array[i].stun_Dice_Size}+${array[i].stun_Bonus}`);
+			}else{
+				var stunInput = document.createTextNode(`${array[i].stun_Dice_Number}d${array[i].stun_Dice_Size}`);
+			}}else {var stunInput = document.createTextNode("No");}
+
+
+			stunData.appendChild(stunInput);
+			document.getElementById(name).appendChild(stunData);
+
+					//create rate of fire data
+			var rofData = document.createElement("TD");
+			var rofInput = document.createTextNode(array[i].RATE_OF_FIRE.NAME);
+			rofData.appendChild(rofInput);
+			document.getElementById(name).appendChild(rofData);
+
+					//create weight data
+			var weightData = document.createElement("TD");
+			var weightInput = document.createTextNode(array[i].weight);
+			weightData.appendChild(weightInput);
+			document.getElementById(name).appendChild(weightData);
+
+					//create damage type data
+			var typeData = document.createElement("TD");
+			var typeInput = document.createTextNode(array[i].damage_type.NAME);
+			typeData.appendChild(typeInput);
+			document.getElementById(name).appendChild(typeData);
+			//create picture data
+			var pictureData = document.createElement("TD");
+			var pictureInput = document.createElement("IMG")
+			pictureInput.setAttribute("src",array[i].picture);
+			pictureInput.setAttribute("height","150");
+			pictureData.appendChild(pictureInput);
+			document.getElementById(name).appendChild(pictureData);
+			////create upgrade data
+			mark_Empty_Upgrades(array);
+			var upgradeText = getUpgradeNames(array);
+			var upgradeData = document.createElement("TD");
+			var upgradeInput = document.createTextNode(upgradeText);
+			upgradeData.appendChild(upgradeInput);
+			document.getElementById(name).appendChild(upgradeData);
+
+		}
+	}}
 
 
 	</script>
