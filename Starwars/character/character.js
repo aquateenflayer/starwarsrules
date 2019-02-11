@@ -1,12 +1,16 @@
 class character{
 	constructor(name,strength,dexterity,constitution,inteligence,wisdom,charisma,species){
+		this.level = 0,
 		this.name = name,
-		this.level = 1,
-		this.speed = 6,
+		this.species = species;
+		this.base_Speed = this.species.speed;
+		this.current_Speed = this.base_Speed;
+		this.starting_Class ={}
 		//this.max_Hit_Points = max_Hit_Points,
 		//this.current_Hit_Points = max_Hit_Points,
 		this.condition = CONDITION.NORMAL,
-		this.skills = skills,
+		this.skills = SKILL,
+		this.SKILLS_ARRAY =SKILLS_ARRAY,
 		this.equiped = [],
 		this.carried = [],
 		this.languages = [], 
@@ -25,47 +29,27 @@ class character{
 		this.wisdom_Mod = Math.floor((this.wisdom -10)/2),
 		this.charisma = charisma,
 		this.charisma_Mod = Math.floor((this.charisma -10)/2),
-		this.Base_Attack_Bonus = Math.floor(CLASS.BAB * this.level),
+		this.Base_Attack_Bonus = 0,
 		//this.weapons = [],
 		this.feats = [],
 		this.talents = [],
+		this.TALENT,
 		this.CLASS = CLASS,
-		this.fort = calculateFort(this);
-		this.ref = 10 + CLASS.REF + Math.floor(this.level/1),
-		this.will = 10 + CLASS.WILL + Math.floor(this.level/1),
-		this.species = species;
-		this.equip_Armor =function(armor_to_Equip){
-			this.armor = armor_to_Equip;
-			if (this.ARMOR_TALENT == undefined){
-			if (armor_to_Equip.reflex_Defense>0){
-				if (this.dexterity_Mod < armor_to_Equip.max_Dex){
-				this.ref = 10 + armor_to_Equip.reflex_Defense + this.dexterity_Mod + this.CLASS.REF;
-			}else{
-				this.ref = 10 + armor_to_Equip.reflex_Defense + armor_to_Equip.max_Dex + this.CLASS.REF;
-			}
-			}
-			}else{
-				if (armor_to_Equip.reflex_Defense>0){
-				if (this.dexterity_Mod < armor_to_Equip.max_Dex){
-				this.ref = 10 + armor_to_Equip.reflex_Defense + this.dexterity_Mod + this.CLASS.REF+ Math.floor(this.level /2);
-			}else{
-				this.ref = 10 + armor_to_Equip.reflex_Defense + armor_to_Equip.max_Dex + this.CLASS.REF + Math.floor(this.level /2);
-			}
-			}
-			}
-			if(armor_to_Equip.fortitude_Defense > 0){
-				this.fort = 10 + armor_to_Equip.fortitude_Defense + this.constitution_Mod +this.CLASS.FORT;
-			}		
-			return
-		}; 
+		this.CLASS_ARRAY =[this.CLASS.NPC,this.CLASS.JEDI,this.CLASS.NOBLE,this.CLASS.SCOUT,this.CLASS.SCOUNDREL,this.CLASS.SOLDIER],
+		//base stats with no equipment//
+		this.fort = 0;
+		this.ref = 0;
+		this.will =0;
+		//where you put  the totals and stuff when you buff the saves///
+		this.current_Fort =0;
+		this.current_Will= 0;
+		this.current_Ref = 0;
+
+		}
 	}
 
-}
 
 
 
 
 
-function calculateFort(thisCharacter){
-		return 10 + thisCharacter.CLASS.FORT + Math.floor(thisCharacter.level/1) + thisCharacter.constitution_Mod
-								}

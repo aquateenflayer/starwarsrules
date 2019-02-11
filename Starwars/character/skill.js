@@ -1,4 +1,4 @@
-class skill{
+/*class skill{
 	constructor(name,stat_Used){
 		this.name = name,
 		this.trained = false;
@@ -9,16 +9,82 @@ class skill{
 		this.trained_Bonus = 0;
 
 	}
-}
-
-let acrobatics = new skill("acrobatics","dex"); 
-let climb = new skill("climb","str");
-let deception = new skill("deception","cha");
-let endurance = new skill("endurance","con");
-let gather_Information = new skill("gather information","cha");
-let initiative = new skill("initiative","dex");
-let jump = new skill("jump","str");
-let knowledge_Bureaucracy = new skill(" knowledge bureaucracy","int");
+} */
+const SKILL = {
+		ACROBATICS:{NAME:"acrobatics",
+			STAT_USED:"dex",
+			TRAINED:false} ,
+		CLIMB:{NAME:"climb",
+			STAT_USED:"str",
+			TRAINED:false},
+		DECEPTION:{NAME:"deception",
+				STAT_USED:"cha",
+			TRAINED:false},
+		ENDURANCE:{NAME:"endurance",
+				STAT_USED:"con",
+			TRAINED:false},
+		GATHER_INFORMATION:{NAME:"gather_Information",
+				STAT_USED:"cha",
+			TRAINED:false},
+		INITIATIVE:{NAME:"initiative",
+				STAT_USED:"dex" ,
+			TRAINED:false},
+		JUMP:{NAME:"jump",
+				STAT_USED:"str" ,
+			TRAINED:false},
+		KNOWLEDGE_BUREAUCRACY:{NAME:"knowledge bureaucracy"  ,
+				STAT_USED:"int"  ,
+			TRAINED:false},
+		KNOWLEDGE_GALACTIC_LORE:{NAME:"knowledge galactic lore"  ,
+				STAT_USED:"int" ,
+			TRAINED:false },
+		KNOWLEDGE_LIFE_SCIENCES:{NAME:"knowledge life sciences"  ,
+				STAT_USED:"int",
+			TRAINED:false  },
+		KNOWLEDGE_PHYSICAL_SCIENCES:{NAME:"knowledge physical sciences",
+				STAT_USED:"int",
+			TRAINED:false },
+		KNOWLEDGE_SOCIAL_SCIENCES:{NAME:"knowledge social sciences"  ,
+				STAT_USED:"int" ,
+			TRAINED:false },
+		KNOWLEDGE_TACTICS:{NAME:"knowledge tactics"  ,
+				STAT_USED:"int" ,
+			TRAINED:false },
+		KNOWLEDGE_TECHNOLOGY:{NAME:"knowledge technology"  ,
+				STAT_USED:"int" ,
+			TRAINED:false },
+		MECHANICS:{NAME:"mechanics"  ,
+				STAT_USED:"int" ,
+			TRAINED:false },
+		PERCEPTION:{NAME:"perception"  ,
+				STAT_USED:"wis" ,
+			TRAINED:false },
+		PILOT:{NAME:"pilot" ,
+				STAT_USED:"dex" ,
+			TRAINED:false },
+		RIDE:{NAME:"ride"  ,
+				STAT_USED:"dex" ,
+			TRAINED:false },
+		STEALTH:{NAME:"stealth" ,
+				STAT_USED:"dex" ,
+			TRAINED:false },
+		SURVIVAL:{NAME:"survival"  ,
+				STAT_USED:"wis" ,
+			TRAINED:false },
+		SWIM:{NAME:"swim",
+				STAT_USED:"str" ,
+			TRAINED:false },
+		TREAT_INJURY:{NAME:"treat injury",
+				STAT_USED:"wis"	,
+			TRAINED:false },
+		USE_COMPUTER:{NAME:"use computer",
+				STAT_USED:"int" ,
+			TRAINED:false },
+		USE_THE_FORCE:{NAME:"use the force",
+				STAT_USED:"cha" ,
+			TRAINED:false }
+	}
+/*let knowledge_Bureaucracy = new skill(" knowledge bureaucracy","int");
 let knowledge_Galactic_Lore = new skill("knowledge galactic lore","int");
 let knowledge_Life_Sciences = new skill("knoledge life sciences","int");
 let knoledge_Physical_Sciences = new skill("knoledge physical sciences","int");
@@ -37,5 +103,6 @@ let treat_Injury = new skill("treat injury","int");
 let use_Computer = new skill("use computer","int");
 let use_The_Force = new skill("use the force","int");
 
-///array with all the skills
-var skills =[acrobatics,climb,deception,endurance,gather_Information,initiative,jump,knowledge_Bureaucracy,knowledge_Galactic_Lore,knowledge_Life_Sciences,knoledge_Physical_Sciences,knoledge_Social_Sciences,knowledge_Tactics,knowledge_Technology,mechanics,perception,pilot,ride,stealth,survival,swim,treat_Injury,use_Computer,use_The_Force];
+array with all the skills
+*/
+var SKILLS_ARRAY =[SKILL.ACROBATICS,SKILL.CLIMB,SKILL.DECEPTION,SKILL.ENDURANCE,SKILL.GATHER_INFORMATION,SKILL.INITIATIVE,SKILL.JUMP,SKILL.KNOWLEDGE_BUREAUCRACY,SKILL.KNOWLEDGE_GALACTIC_LORE,SKILL.KNOWLEDGE_LIFE_SCIENCES,SKILL.KNOWLEDGE_PHYSICAL_SCIENCES,SKILL.KNOWLEDGE_SOCIAL_SCIENCES,SKILL.KNOWLEDGE_TACTICS,SKILL.KNOWLEDGE_TECHNOLOGY,SKILL.MECHANICS,SKILL.PERCEPTION,SKILL.PILOT,SKILL.RIDE,SKILL.STEALTH,SKILL.SURVIVAL,SKILL.SWIM,SKILL.TREAT_INJURY,SKILL.USE_COMPUTER,SKILL.USE_THE_FORCE];
