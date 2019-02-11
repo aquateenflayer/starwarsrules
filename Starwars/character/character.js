@@ -1,16 +1,18 @@
 class character{
-	constructor(name,CLASS,level,max_Hit_Points,strength,dexterity,constitution,inteligence,wisdom,charisma){
+	constructor(name,strength,dexterity,constitution,inteligence,wisdom,charisma,species){
 		this.name = name,
-		this.level = level,
+		this.level = 1,
 		this.speed = 6,
-		this.max_Hit_Points = max_Hit_Points,
-		this.current_Hit_Points = max_Hit_Points,
+		//this.max_Hit_Points = max_Hit_Points,
+		//this.current_Hit_Points = max_Hit_Points,
 		this.condition = CONDITION.NORMAL,
 		this.skills = skills,
-		this.equipment = [],
-		this.armor = ARMOR_GROUP.UNARMORED,
+		this.equiped = [],
+		this.carried = [],
+		this.languages = [], 
+		//this.armor = ARMOR_GROUP.UNARMORED,
 		//this.equip_Armor = equip_Armor,
-		this.equip_Weapon = equip_Weapon,
+		//this.equip_Weapon = equip_Weapon,
 		this.strength = strength,
 		this.strength_Mod = Math.floor((this.strength -10)/2),
 		this.dexterity = dexterity,
@@ -23,12 +25,15 @@ class character{
 		this.wisdom_Mod = Math.floor((this.wisdom -10)/2),
 		this.charisma = charisma,
 		this.charisma_Mod = Math.floor((this.charisma -10)/2),
-		this.Base_Attack_Bonus = Math.floor(CLASS.BAB * level),
-		this.weapons = [],
+		this.Base_Attack_Bonus = Math.floor(CLASS.BAB * this.level),
+		//this.weapons = [],
+		this.feats = [],
+		this.talents = [],
 		this.CLASS = CLASS,
-		this.fort = 10 + CLASS.FORT + Math.floor(level/1) + this.constitution_Mod,
-		this.ref = 10 + CLASS.REF + Math.floor(level/1),
-		this.will = 10 + CLASS.WILL + Math.floor(level/1)
+		this.fort = calculateFort(this);
+		this.ref = 10 + CLASS.REF + Math.floor(this.level/1),
+		this.will = 10 + CLASS.WILL + Math.floor(this.level/1),
+		this.species = species;
 		this.equip_Armor =function(armor_to_Equip){
 			this.armor = armor_to_Equip;
 			if (this.ARMOR_TALENT == undefined){
@@ -52,14 +57,15 @@ class character{
 				this.fort = 10 + armor_to_Equip.fortitude_Defense + this.constitution_Mod +this.CLASS.FORT;
 			}		
 			return
-		};
+		}; 
 	}
 
 }
 
 
 
-function equip_Weapon(weapon_to_Equip){
-		this.weapons.push(weapon_to_Equip);
-		return
-}
+
+
+function calculateFort(thisCharacter){
+		return 10 + thisCharacter.CLASS.FORT + Math.floor(thisCharacter.level/1) + thisCharacter.constitution_Mod
+								}

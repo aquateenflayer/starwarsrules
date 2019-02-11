@@ -28,6 +28,20 @@ const CONDITION ={
 		
 	}
 };
+const CHARACTER_SIZE = {
+	SMALL:{
+		NAME:"Small",
+		ATTACK_MOD:1
+	},
+	MEDIUM:{
+		NAME:"Medium",
+		ATTACK_MOD:0
+	},
+	LARGE:{
+		NAME:"Large",
+		ATTACK_MOD:-1
+	}
+}
 
 
 
