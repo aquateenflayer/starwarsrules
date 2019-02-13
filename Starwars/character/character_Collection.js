@@ -50,6 +50,7 @@ var heavy_storm_Trooper= new character('Heavy Storm Trooper',15,11,10,12,9,8,hum
 var test_Character = new character('Test Character',10,10,10,10,10,10,human);
 	
 function create_text_Character(character){
+			character.feats= [];
 			character.starting_Class = CLASS.SOLDIER;
 			character.CLASS.NPC.LEVEL = 1;
 			character.CLASS.JEDI.LEVEL =1;

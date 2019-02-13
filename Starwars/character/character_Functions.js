@@ -109,11 +109,21 @@ function calculate_Save(character,save){
 	return result;
 }
 	function calculate_All_Saves(character){
-		calculate_Save(character,"fort");
-		calculate_Save(character,"ref");
-		calculate_Save(character,"will");
+		calculate_Fort(character)
+		calculate_Ref(character);
+		calculate_Will(character);
 	}
 
+function calculate_Fort(character){
+	return character.constitution_Mod +calculate_Save("fort");
+								}
+function calculate_Ref(character){
+	return character.dexterity_Mod +calculate_Save("ref");
+								}
+function calculate_Will(character){
+	return character.dexterity_Mod +calculate_Save("will");
+
+}
 
 function calculate_BAB(character){
 	let BAB = 0;
@@ -207,11 +217,11 @@ function calculate_Max_Hp(character){
 			hp_Gain = hp_Gain_Roll + character.constitution_Mod;
 			console.log(`HP gained at lv.${theLevel}\nClass:${character.CLASS_ARRAY[hpTimer].NAME}\n${hp_Gain} Hitpoints Gained`)
 			max_Hp += hp_Gain;
-		}
-	}
-}
-character.level = theLevel;
-character.CLASS[character.starting_Class.REFRENCE].LEVEL++;
-character.max_Hp = max_Hp;
-character.current_Hp = max_Hp;
-}
+																					}
+													}
+																		}		
+				character.level = theLevel;
+				character.CLASS[character.starting_Class.REFRENCE].LEVEL++;
+				character.max_Hp = max_Hp;
+				character.current_Hp = max_Hp;
+								}

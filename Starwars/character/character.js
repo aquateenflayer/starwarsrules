@@ -5,7 +5,7 @@ class character{
 		this.species = species;
 		this.base_Speed = this.species.speed;
 		this.current_Speed = this.base_Speed;
-		this.starting_Class ={}
+		this.starting_Class ={},
 		//this.max_Hit_Points = max_Hit_Points,
 		//this.current_Hit_Points = max_Hit_Points,
 		this.condition = CONDITION.NORMAL,
