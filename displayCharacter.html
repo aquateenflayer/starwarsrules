@@ -1,5 +1,6 @@
 <html>
 	<head>
+		<link rel="stylesheet" type="text/css" href="starwarsstyle.css">
 		<script src="equipment/display_Black_Market.js"></script>
 		<script src="equipment/display_Armor.js"></script>
 		<script src="equipment/display_Weapon.js"></script>
@@ -24,29 +25,34 @@
 		<script src="equipment/ammo_Collection.js"></script>
 		<script src="equipment/weapon_Collection.js"></script>
 		<script src="equipment/armor_Collection.js"></script>
+		<script src="character/talent.js"></script>
+		<script src="character/talent_Collection.js"></script>
 		<script src="character/feat.js"></script>
 		<script src="character/feat_Collection.js"></script>
 		<script src="character/skill.js"></script>
-		<script src="character/character_Functions.js"></script>
 		<script src="character/character.js"></script>
 		<script src="character/class.js"></script>
+		<script src="character/character_Functions.js"></script>
 		<script src="equipment/create_Armor_Table.js"></script>
 		<script src="character/character_Collection.js"></script></head>
+		<script src="character/display_NPC.js"></script></head>
 <body>
 
-
-<button onclick ="displayCharacter(createHeavyStormTrooper(heavy_storm_Trooper))">Stormtrooper</button>
+<!--
+<button onclick ="displayCharacter(create_text_Character(test_Character))">TEST</button>
 <span id = "name"></span><span id = "CLASS"></span>
 <br>
-Max Hp <span id = "maxHitPoints"></span> Fort <span id = "fort"></span> Ref <span id = "ref"></span> Will <span id = "will"></span><br>
-STR <span id = "strength"></span> <span id = "str"></span><br>
-DEX <span id = "dexterity"></span> <span id = "dex"></span><br>
-CON <span id = "constitution"></span> <span id = "con"></span><br>
-INT <span id = "inteligence"></span> <span id = "int"></span><br>
-WIS <span id = "wisdom"></span> <span id = "wis"></span><br>
-CHA <span id = "charisma"></span> <span id = "cha"></span><br>
+Max Hp <span id = "maxHitPoints"></span><br>
+Defenses: Ref <span id = "ref"></span> FF(<span id = "ff"></span>) Fort <span id = "fort"></span> Will <span id = "will"></span><br> Threshold:<span id = "threshold"></span><br>
+<span id = "abilities"></span>
+<details><summary>Attacks</summary>
+<span id = "attacks"></span>
+</details>
 <details><summary>Feats</summary>
 <span id = "feats"></span>
+</details>
+<details><summary>Talents</summary>
+<span id = "talents"></span>
 </details>
 <span id = "trainedSkills"></span>
 <details><summary>All Skills</summary>
@@ -55,31 +61,28 @@ CHA <span id = "charisma"></span> <span id = "cha"></span><br>
 <details><summary>Armor</summary>
 <span id = "armor"></span>
 </details>
-<details><summary>Attacks</summary>
-<span id = "attacks"></span>
-</details>
+<details><summary>Equipment</summary>
 <span id = "equipment"></span>
+</details>
+-->
 <body>
 <script>
 function displayCharacter(character){
 	document.getElementById("name").innerHTML = character.name;
 	//document.getElementById("CLASS").innerHTML = character.CLASS.NAME;
-	document.getElementById("maxHitPoints").innerHTML = character.max_Hit_Points;
-	document.getElementById("fort").innerHTML = character.fort;
-	document.getElementById("ref").innerHTML = character.ref;
-	document.getElementById("will").innerHTML = character.will;
-	document.getElementById("strength").innerHTML = character.strength;
-	document.getElementById("dexterity").innerHTML = character.dexterity;
-	document.getElementById("constitution").innerHTML = character.constitution;
-	document.getElementById("inteligence").innerHTML = character.inteligence;
-	document.getElementById("wisdom").innerHTML = character.wisdom;
-	document.getElementById("charisma").innerHTML = character.charisma;
-	document.getElementById("str").innerHTML = character.strength_Mod;
-	document.getElementById("dex").innerHTML = character.dexterity_Mod;
-	document.getElementById("con").innerHTML = character.constitution_Mod;
-	document.getElementById("int").innerHTML = character.inteligence_Mod;
-	document.getElementById("wis").innerHTML = character.wisdom_Mod;
-	document.getElementById("cha").innerHTML = character.charisma_Mod;
+	document.getElementById("maxHitPoints").innerHTML = character.max_Hp;
+	document.getElementById("fort").innerHTML = character.current_Fort;
+	//console.log(character.current_Fort)
+	//console.log(character.current_Will)
+	document.getElementById("ref").innerHTML = character.current_Ref;
+	document.getElementById("ff").innerHTML = character.flat_Footed;
+	document.getElementById("will").innerHTML = character.current_Will;
+	document.getElementById("threshold").innerHTML = character.threshold;
+	//stats
+
+	if (undefined == character.abilities_Shown){
+	display_Abilities(character);
+				character.abilities_Shown = true;}
 	//  document.getElementById("object_Code").innerHTML = character;
 	
 //// create feat list
@@ -91,61 +94,57 @@ function displayCharacter(character){
 	}
 	document.getElementById("feats").innerHTML = feat_data;
 
+
+/// create talent list
+
+var talent_data = ``;
+for(talent_Timer = 0; talent_Timer < character.talents.length;talent_Timer++){
+	talent_data += character.talents[talent_Timer].NAME + `<br>`
+}
+document.getElementById("talents").innerHTML = talent_data;
 	//create skill list
-	var skill_data = "";
-	for(i =0; i <character.skills.length; i++){
 
-		if (character.skills[i].use_Untrained == false && character.skills[i].trained == false){
-			skill_data += `${character.skills[i].name} can't be used untrained <br>`
-			//console.log(character.skills[i].name)
-		}else{
+	var skill_data = ``;
+	for(skillDisplayTimer = 0; skillDisplayTimer < character.SKILLS_ARRAY.length; skillDisplayTimer++){
+		skill = character.SKILLS_ARRAY[skillDisplayTimer]
+		skill_data += `${skill.NAME}: ${skill.TOTAL_BONUS}<br>`
+		//console.log(skill.TOTAL_BONUS)
+									}
 
-//console.log(character.skills[i].name)
-		var mod;
-		switch(character.skills[i].stat_Used){
-			case "str" :
-			mod = character.strength_Mod
-			break;
-			case "dex" :
-			mod = character.dexterity_Mod
-			break;
-			case "con" :
-			mod = character.constitution_Mod
-			break;
-			case "int" :
-			mod = character.inteligence_Mod
-			break;
-			case "wis" :
-			mod = character.wisdom_Mod
-			break;
-			case "cha" :
-			mod = character.charisma_Mod
-			break;
-			default:
-			console.log("ERROR in the skill display")
-		}
-
-		if(character.skills[i].trained == true){
-			trained_Bonus = 5;
-		}else{
-			trained_Bonus = 0;
-		}
-
-		all_Skill_Bonus = trained_Bonus + mod + character.condition.PENALTY;
-
-		skill_data += character.skills[i].name + " "+all_Skill_Bonus +"<br>"
-		
-		
-	
-}
 document.getElementById("skills").innerHTML = skill_data;
-}
-document.getElementById("armor").innerHTML = character.armor.name;
 
+
+					//armor
+	if (undefined !== character.armor ){
+document.getElementById("armor").innerHTML = character.armor.name;
+											}else{
+				document.getElementById("armor").innerHTML = "Unarmored"								}
+
+				//equiped weapons
+		weapon_Data = ""
+		for(i = 0; i < character.carried.length; i++){
+			if (undefined !== character.carried[i].weapon_group){
+				let damage = calculate_Damage_Dice(character,character.carried[i])
+			weapon_Data += `${character.carried[i].name} +${calculateAttackMod(character,character.carried[i])}` + damage + "<br>"	
+			}
+		}
+
+		document.getElementById("attacks").innerHTML = weapon_Data;
+/*
+	if (undefined !== character.equiped_Weapon){
 var attack_Data=`${character.equiped_Weapon.name} +${calculateAttackMod(character,character.equiped_Weapon)}`
 
 calculateAttackMod(character,character.equiped_Weapon)
 document.getElementById("attacks").innerHTML = attack_Data;	
+												}
+*/
+
+	//everything the character is carrying//											
+	let carried_data = "";
+	for (i =0; i < character.carried.length; i++){
+		carried_data += character.carried[i].name + "<br>";
+	} 
+	document.getElementById("equipment").innerHTML = carried_data ;
 }
 
 </script>
