@@ -1,10 +1,23 @@
 
 //armor profs
 const ARMOR_PROF_LIGHT = new feat("Armor Proficency (Light)","You are proficient with Light Armor, and can wear it without impediment.\nEffect: When you wear Light Armor, you take no Armor Check Penalty on attack rolls or Skill Checks. Additionally, you benefit from all of the armor's special Equipment bonuses (If any).\nNormal: A character who wears Light Armor with which they are not proficient takes a -2 Armor Check Penalty on attack rolls as well as Skill Checks made using the following Skills: Acrobatics, Climb, Endurance, Initiative, Jump, Stealth, and Swim. Additionally, the character gains none of the armor's special Equipment bonuses.");
+
 const BURST_FIRE = new feat("Burst Fire","When using a ranged weapon in Autofire mode, you can fire a short Burst at a single foe.\nPrerequisite: Weapon Proficiency (Heavy Weapons) Feat\nEffect: When using a ranged weapon with Autofire capability, and that you are Proficient with, in Autofire mode, you may fire a short burst as a single attack against a single target. You take a -5 penalty on your attack roll, but deal +2 dice of damage. The effects of this Feat do not stack with the extra damage provided by the Deadeye or Rapid Shot Feats.\nSpecial: Firing a Burst expends five shots, and can only be done if the weapon has at least five shots remaining.")
+
+const CAREFUL_SHOT = new feat("Careful Shot","You are particularly skilled at Aiming your attacks.<br>Prerequisites: Point-Blank Shot Feat, Base Attack Bonus +2<br>Effect: If you Aim before making a ranged attack, you gain a +1 bonus on your attack roll.<br>Special: A Pilot can use this Feat, but since they must spend at least one Move Action operating their Vehicles, they must split their Aim (Two Swift Actions) and attack (Standard Action) into two separate turns, making it more likely that the target will break line of sight or avoid you.");
+
 const COORDINATED_ATTACK =  new feat("Coordinated Attack","You are skilled at coordinating your attacks with your allies.\nPrerequisite: Base Attack Bonus +2\nEffect: You are automatically successful when using the Aid Another action to aid an ally's attack, or suppress and enemy as long as the target is adjacent to you or within Point-Blank Range.\nNormal: You must make an attack roll against a Reflex Defense of 10 to gain the benefits of the Aid Another action.");
+
 const POINT_BLANK_SHOT = new feat("Point Blank Shot","You are skilled at making well-placed shots with ranged weapons at Point-Blank Range.\nEffect: You get a +1 bonus on attack and damage rolls with ranged weapons against opponents within Point-Blank Range.\nSpecial: This Feat works normally with Vehicle Weapons. However, if you are using a Missile or a Torpedo and you miss with your attack roll, the projectile does not gain the benefit of this Feat for the second attack roll.")
 
+const PRECICE_SHOT = new feat("Precice Shot", "You are skilled at timing your ranged attacks so that you don't hit your ally by mistake.<br>Prerequisite: Point-Blank Shot<br>Effect: You can shoot or Throw a ranged weapon at an opponent engaged in melee combat with one or more of your allies without taking the standard -5 penalty.")
+
+const RAPID_STRIKE = new feat("Rapid Strike", "You make two quick strikes with a melee weapon as a single attack.<br>Prerequisite: Base Attack Bonus +1, Proficient with Weapon<br>Effect: When using a melee weapon with which you are proficient, you may make two strikes as a single attack against a single target. You take a -2 penalty on your attack roll, but deal +1 die of damage with a successful attack.<br>Special: The effects of this feat do not stack with the extra damage provided by the Mighty Swing Feat. If you do not have a Dexterity score of 13 or higher, increase the penalty to attacks to -5 when using this Feat with non-Light Weapons.")
+
+const VEHICULAR_COMBAT = new feat("Vehicular Combat", "placeholder")
+
+const WEAPON_FINESSE = new feat("Weapon Finesse","Can use your dex mod in place of str mod for calculating your melee attack bonus");
+		WEAPON_FINESSE.finesse = true;
 
 //weapon focus//
 const WEAPON_FOCUS_UNARMED = new feat("Weapon Focus Unarmed","You are particularly skilled in using placeholder.\,Effect: You gain a +1 bonus on all attack rolls you make using placeholder.\nSpecial: You can gain this Feat multiple times. It's effects do not stack. Each time you take the Feat, it applies to a new Exotic Weapon or weapon group (Including Unarmed attacks). If you take this Feat with Heavy Weapons, it works normally with Vehicle Weapons.");
@@ -62,3 +75,4 @@ const WEAPON_PROF_EXOTIC_RANGED = new feat("Weapon Proficiency Exotic Weapons","
 const WEAPON_PROF_EXOTIC_MELEE = new feat("Weapon Proficiency Exotic Weapons","You are proficient with this particular kind of weaponry.\n Normal: If you wield a weapon with which you are not proficient, you take a -5 penalty to your attack rolls.");
 		WEAPON_PROF_EXOTIC_MELEE.proficiency = true;
 		WEAPON_PROF_EXOTIC_MELEE.effects = "Exotic Melee";
+

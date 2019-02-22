@@ -13,7 +13,8 @@
 const SKILL = {
 		ACROBATICS:{NAME:"acrobatics",
 			STAT_USED:"dex",
-			TRAINED:false} ,
+			TRAINED:false,
+			SKILL_FOCUS:false} ,
 		CLIMB:{NAME:"climb",
 			STAT_USED:"str",
 			TRAINED:false},

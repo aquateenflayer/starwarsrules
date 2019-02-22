@@ -13,9 +13,10 @@ class character{
 		this.SKILLS_ARRAY =SKILLS_ARRAY,
 		this.equiped = [],
 		this.carried = [],
+		//this.weapons = [],
 		this.languages = [], 
-		//this.armor = ARMOR_GROUP.UNARMORED,
-		//this.equip_Armor = equip_Armor,
+		//this.armor = UNARMORED,
+		this.armor_Ref = 0;
 		//this.equip_Weapon = equip_Weapon,
 		this.strength = strength,
 		this.strength_Mod = Math.floor((this.strength -10)/2),
@@ -30,12 +31,12 @@ class character{
 		this.charisma = charisma,
 		this.charisma_Mod = Math.floor((this.charisma -10)/2),
 		this.Base_Attack_Bonus = 0,
-		//this.weapons = [],
 		this.feats = [],
 		this.talents = [],
 		this.TALENT,
 		this.CLASS = CLASS,
 		this.CLASS_ARRAY =[this.CLASS.NPC,this.CLASS.JEDI,this.CLASS.NOBLE,this.CLASS.SCOUT,this.CLASS.SCOUNDREL,this.CLASS.SOLDIER],
+			//console.log(this.CLASS_ARRAY.length)
 		//base stats with no equipment//
 		this.fort = 0;
 		this.ref = 0;
